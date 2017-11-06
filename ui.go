@@ -11,7 +11,9 @@ import (
 func clear() {
 	fmt.Printf("\033c")
 }
-
+func printRGB(text string, rgb [3]int) {
+	fmt.Print("\x1b[38;2;" + strconv.Itoa(rgb[0]) + ";" + strconv.Itoa(rgb[1]) + ";" + strconv.Itoa(rgb[2]) + "m" + text + "\x1b[0m")
+}
 func inputStream(prompt string) string {
 	fmt.Print(prompt)
 	reader := bufio.NewReader(os.Stdin)

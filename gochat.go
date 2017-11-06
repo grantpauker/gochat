@@ -1,12 +1,13 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	rgb := [3]int{100, 0, 255}
-	me := newUser("Grant", rgb)
+	// str := "3,3,3100,3123,123123,31123"
+	// intArray := str2IntArray(str)
+	// fmt.Println(intArray)
+	// fmt.Println(intArray2Str(intArray))
+	me := newUser("Grant", createRGB(255, 0, 100))
 	clear()
 	dir := getMessageDir()
 	file := pickMessage(dir)
@@ -27,5 +28,4 @@ func main() {
 		appendFile(me, msg, path)
 		clear()
 	}
-
 }
