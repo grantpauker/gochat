@@ -5,8 +5,7 @@ import (
 )
 
 func main() {
-	rgb := [3]int{100, 0, 255}
-	me := newUser("Grant", rgb)
+	me := newUser("Grant")
 	clear()
 	dir := getMessageDir()
 	file := pickMessage(dir)

@@ -11,8 +11,7 @@ import (
 )
 
 type User struct {
-	name  string
-	color [3]int
+	name string
 }
 type Message struct {
 	user User
@@ -33,8 +32,8 @@ func filesInDir(dir string) []string {
 	}
 	return fileNames
 }
-func newUser(user string, rgb [3]int) User {
-	return User{name: user, color: rgb}
+func newUser(user string) User {
+	return User{name: user}
 }
 
 func newMessage(user User, text string) Message {
@@ -44,7 +43,7 @@ func newMessage(user User, text string) Message {
 func appendFile(user User, text string, fileName string) {
 	f, _ := os.OpenFile(fileName, os.O_APPEND|os.O_WRONLY, 0644)
 
-	f.WriteString(user.name + " " + text + "\n")
+	f.WriteString(user.name + "" + text + "\n")
 
 	f.Close()
 }
@@ -54,11 +53,10 @@ func createChatMap(filename string) []Message {
 
 	b, _ := os.Open(filename)
 	scanner := bufio.NewScanner(b)
-	rgb := [3]int{255, 0, 100}
 	for scanner.Scan() {
-		tmp = strings.Split(scanner.Text(), " ")
+		tmp = strings.Split(scanner.Text(), "")
 		if len(tmp) > 1 {
-			m = append(m, newMessage(newUser(tmp[0], rgb), tmp[1]))
+			m = append(m, newMessage(newUser(tmp[0]), tmp[1]))
 		}
 	}
 	return m
