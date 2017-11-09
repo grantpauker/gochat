@@ -1,29 +1,32 @@
 package main
 
 import (
-	"bufio"
 	"errors"
 	"fmt"
 	"log"
 	"net"
-	"os"
-	"strings"
 )
 
+/*
+var (
+	str string
+)
+for {
+	newClient := createClient("127.0.0.1", "3333")
+	newClient.Connect()
+	str = inputStream("Send: ")
+	newClient.Send(str, 255)
+	buff := make([]byte, 255)
+	newClient.Read(buff)
+	fmt.Printf("Receive: %s\n", string(buff))
+}
+*/
 type Client struct {
 	ip         string
 	port       string
 	connection net.Conn
 	errConn    error
 	errSend    error
-}
-
-func inputStream(prompt string) string {
-	fmt.Print(prompt)
-	reader := bufio.NewReader(os.Stdin)
-	text, _ := reader.ReadString('\n')
-	text = strings.TrimSuffix(text, "\n")
-	return text
 }
 
 func send(text string, n int, conn net.Conn) error {
