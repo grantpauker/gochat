@@ -50,9 +50,9 @@ func (client *Client) Connect() {
 	}
 }
 func (client *Client) Send(str string, n int) {
-	client.errConn = send(str, n, client.connection)
-	if client.errConn != nil {
-		log.Fatalln(client.errConn)
+	client.errSend = send(str, n, client.connection)
+	if client.errSend != nil {
+		log.Fatalln(client.errSend)
 	}
 }
 func (client *Client) Read(buffer []byte) {

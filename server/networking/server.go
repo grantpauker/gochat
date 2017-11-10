@@ -27,7 +27,6 @@ func checkError(err error) {
 }
 
 func onClose(toRun interface{}) {
-
 	c := make(chan os.Signal, 2)
 	signal.Notify(c, os.Interrupt, syscall.SIGTSTP)
 	go func() {
@@ -51,7 +50,8 @@ func send(text string, n int, conn net.Conn) error {
 	return err
 }
 func (server *Server) Listen() {
-	server.listener, server.lErr = net.Listen("tcp", fmt.Sprintf("%s:%s", server.ip, server.port))
+	fmt.Printf("%s:%s\n", server.ip, server.port)
+	server.listener, server.lErr = net.Listen("tcp", fmt.Sprintf(":%s", server.port))
 }
 func (server *Server) Accept() {
 	server.connection, server.cErr = server.listener.Accept()

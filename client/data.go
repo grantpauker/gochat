@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -15,6 +16,11 @@ type Message struct {
 	text string
 }
 
+func checkError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
 func getMessageDir() string {
 	_, dir, _, _ := runtime.Caller(0)
 	dir = filepath.Dir(dir) + "/messages"
@@ -59,4 +65,7 @@ func printChatMap(m []Message) {
 	for _, theMessage := range m {
 		fmt.Println(theMessage.user + ": " + theMessage.text)
 	}
+}
+func printMessage(msg Message) {
+	fmt.Printf("%s: %s\n", msg.user, msg.text)
 }
